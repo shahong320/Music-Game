@@ -6,6 +6,7 @@ import MusicGame.*;
 
 public class MusicPlayerTest {
 
+	
 	@Test
 	public void testOpenAudioFile (){
 
