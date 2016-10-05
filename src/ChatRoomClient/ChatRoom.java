@@ -41,6 +41,7 @@ public class ChatRoom extends JPanel{
 	
 	private User allUser = new User();
 	
+	
 	public ChatRoom(User user,List<User> users){
 		this.user = user;
 		this.users = users;
@@ -48,7 +49,7 @@ public class ChatRoom extends JPanel{
 		this.allUser.setName("All User");
 		this.allUser.setId("all");
 		//remover yourself form list
-	//	removeSelf();
+	    removeSelf();
 		this.infoLabel = new JLabel("Your Name: "+user.getName());
 		//Create user list
 		createUserList();
@@ -68,11 +69,7 @@ public class ChatRoom extends JPanel{
 		contentBox.add(infoBox);
 		contentBox.add(content);
 		contentBox.add(sendBox);
-//		JScrollPane listPane = new JScrollPane(this.list);
-//		listPane.setMinimumSize(new Dimension(150, 200));
-//		JSplitPane mainPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, contentBox, listPane);
-//		mainPanel.setDividerLocation(400);
-//		mainPanel.setDividerSize(3);
+
 		this.sendButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				send();
@@ -81,22 +78,19 @@ public class ChatRoom extends JPanel{
 		
 		this.add(contentBox);
 
-//		this.setTitle("Chat Room");
-//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		this.pack();
-//		this.setResizable(false);
-//		this.setSize(550, 630);
-//		this.setLocation(200, 50);
-//		this.setVisible(true);
 	}
-	//创建用户列表
+	//create user list
 	private void createUserList() {
 		this.list = new JList();
 		this.list.setListData(this.users.toArray());
 		this.list.setFixedCellHeight(40);
 		this.list.setCellRenderer(new UserListCellRenderer());
 	}
-	//将自己从用户列表中删除
+	//refresh list
+	private void refresh() {
+		this.list.setListData(this.users.toArray());
+	}
+	//remove self from list.
 		private void removeSelf() {
 			for (Iterator it = this.users.iterator(); it.hasNext();) {
 				User u = (User)it.next();
@@ -105,10 +99,7 @@ public class ChatRoom extends JPanel{
 				}
 			}
 		}
-		//刷新列表
-		private void refresh() {
-			this.list.setListData(this.users.toArray());
-		}
+
 	//Send Messages
 		private void send() {
 			User selectUser = (User)this.list.getSelectedValue();
@@ -130,14 +121,16 @@ public class ChatRoom extends JPanel{
 			else this.textArea.append("\n" + content);
 		}
 
-//		//add new user
+		//add new user
 		public void addUser(User newUser) {	
 			this.users.add(newUser);
 			appendContent(newUser.getName() + " Come in");
 			refresh();
 		}
 		
-		
+	/**
+	 * main test.=============================================	
+	 */
 //		public static void main(String[] args) {
 //			
 //			User user = new User();

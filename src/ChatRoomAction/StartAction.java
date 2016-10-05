@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.newdawn.slick.SlickException;
 
-import ChatRoomClient.ChatRoom;
 import ChatRoomClient.ClienContext;
 import GameHallClient.ClientAction;
 import GameHallClient.Response;
@@ -15,20 +14,6 @@ import GameHallClient.User;
 import UIFrame.MainUI;
 
 public class StartAction implements ClientAction{
-
-	public void execute(Response response) {
-		Map<String, User> usersMap = (Map<String, User>)response.getData("users");
-		List<User> users = getUser(usersMap);
-		MainUI ChatFrame = null;
-		try {
-			ChatFrame = new MainUI(ClienContext.user, users);
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ClienContext.mainFrame = ChatFrame;
-	}
-	
 	/**
 	 * Change the Map to the List
 	 * @param usersMap
@@ -41,6 +26,19 @@ public class StartAction implements ClientAction{
 			resultList.add(user);
 		}
 		return resultList;
+	}
+
+	public void execute(Response response) {
+		Map<String, User> usersMap = (Map<String, User>)response.getData("users");
+		List<User> users = getUser(usersMap);
+		MainUI ChatFrame = null;
+		try {
+			ChatFrame = new MainUI(ClienContext.user, users);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ClienContext.mainFrame = ChatFrame;
 	}
 	
 }

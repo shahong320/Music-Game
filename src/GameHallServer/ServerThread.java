@@ -14,79 +14,25 @@ import GameHallClient.XStreamUtil;
 
 
 public class ServerThread extends Thread{
+	private PrintStream printstream;
 	private Socket socket;
-	
-	private BufferedReader br;
-	
 	private String line;
-	
-	private PrintStream ps;
+	private BufferedReader buffreder;
 
-	//保存被创建的Action对象
+	//keep the action object which was created.
 	public Map<String, ServerAction> actions = new HashMap<String, ServerAction>();
 	
 	public ServerThread(Socket socket) {
 		this.socket = socket;
 	}
-	
-	public void run() {
-		try {
-			this.br = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-			while((this.line = br.readLine()) != null) {
-				//得到请求对象
-				Request request = getRequest(this.line);
-				//从request中得到客户端处理类, 并且构造Response对象
-				Response response = new Response(request.getClientAction());
-				//将请求的参数都设置到Response中
-				copyParameters(request, response);
-				//如果字符串不能转换成Request对象, 则设置错误码并返回
-				if (request == null) {
-					response.setErrorCode("request error");
-					this.ps = new PrintStream(socket.getOutputStream());
-					this.ps.println(getResponseXML(response));
-					break;
-				}
-				//得到Server处理类
-				ServerAction action = getAction(request.getServerAction());
-				//如果找不到对应的Action, 返回错误信息, 找到则执行Action
-				if (action == null) {
-					response.setErrorCode("could not find any commands");
-					this.ps = new PrintStream(socket.getOutputStream());
-					this.ps.println(getResponseXML(response));
-				} else {
-					action.execute(request, response, this.socket);
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	//将Request中的参数map设置到Response的data中
+	//set the map of request in the response
 	private void copyParameters(Request request, Response response) {
 		Map<String, Object> parameters = request.getParameters();
 		for (String key : parameters.keySet()) {
 			response.setData(key, parameters.get(key));
 		}
 	}
-	
-	//将一次服务器响应转换成XML字符串
-	private String getResponseXML(Response response) {
-		return XStreamUtil.toXML(response);
-	}
-	
-	//将字符串转换成一个Request对象
-	private Request getRequest(String xml) {
-		try {
-			Request r = (Request)XStreamUtil.fromXML(xml);
-			return r;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	//从Map中得到Action对象, 如果拿不到, 则创建
+	//get the action from map if not create.
 	private ServerAction getAction(String className) {
 		try {
 			if (actions.get(className) == null) {
@@ -99,4 +45,59 @@ public class ServerThread extends Thread{
 			return null;
 		}
 	}
+	//array to xml
+	private Request getRequest(String xml) {
+		
+		try {
+			Request r = (Request)XStreamUtil.fromXML(xml);
+			return r;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//server action to xml
+	private String getResponseXML(Response response) {
+		return XStreamUtil.toXML(response);
+	}
+	@SuppressWarnings("unused")
+	public void run() {
+		try {
+			this.buffreder = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+			while((this.line = buffreder.readLine()) != null) {
+				//get request
+				Request request = getRequest(this.line);
+				//bulit request object
+				Response response = new Response(request.getClientAction());
+				//set infro in request
+				copyParameters(request, response);
+				//if is not request object and return.
+				if (request == null) {
+					response.setErrorCode("request error");
+					this.printstream = new PrintStream(socket.getOutputStream());
+					this.printstream.println(getResponseXML(response));
+					break;
+				}
+				//get server
+				ServerAction action = getAction(request.getServerAction());
+				//excute action if cant find reutn
+				if (action == null) {
+					response.setErrorCode("could not find any commands");
+					this.printstream = new PrintStream(socket.getOutputStream());
+					this.printstream.println(getResponseXML(response));
+				} else {
+					action.execute(request, response, this.socket);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+	
+
+	
+
 }

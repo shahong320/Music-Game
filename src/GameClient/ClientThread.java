@@ -18,7 +18,7 @@ import GameHallClient.XStreamUtil;
 public class ClientThread extends Thread{
 	private String string;
 	private User user;
-	private Map<String, ClientAction>  actions = new HashMap<String, ClientAction>();
+	private Map<String, ClientAction>  actionMap = new HashMap<String, ClientAction>();
 	
 	public ClientThread(User user){
 		this.user = user;
@@ -26,9 +26,9 @@ public class ClientThread extends Thread{
 	
 	public void run(){
 		try {
-			InputStream istream = this.user.getSocket().getInputStream();
-			BufferedReader breader = new BufferedReader(new InputStreamReader(istream));
-			while ((this.string = breader.readLine()) != null) {
+			InputStream tream = this.user.getSocket().getInputStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(tream));
+			while ((this.string = reader.readLine()) != null) {
 				Response response = getResponse(this.string);
 				ClientAction action = getClientAction(response.getActionClass());
 				action.execute(response);
@@ -38,21 +38,21 @@ public class ClientThread extends Thread{
 		}
 	}
 	
-	//得到服务器响应中的客户端处理类
+	//get client action
 	private ClientAction getClientAction(String className) {
 		try {
-			if (actions.get(className) == null) {
+			if (actionMap.get(className) == null) {
 				ClientAction action = (ClientAction)Class.forName(className).newInstance();
-				actions.put(className, action);
+				actionMap.put(className, action);
 			}
-			return actions.get(className);
+			return actionMap.get(className);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	//将服务器响应的xml转换成Response对象
+	//change the xml to response obejct
 	private Response getResponse(String xml) {
 		return (Response)XStreamUtil.fromXML(xml);
 	}

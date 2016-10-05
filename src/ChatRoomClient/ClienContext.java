@@ -1,6 +1,5 @@
 package ChatRoomClient;
 
-import ChatRoomClient.ChatRoom;
 import GameHallClient.User;
 import UIFrame.MainUI;
 //Store some Client Infro
