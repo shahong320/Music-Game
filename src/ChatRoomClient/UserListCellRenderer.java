@@ -2,12 +2,7 @@ package ChatRoomClient;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
@@ -19,10 +14,10 @@ public class UserListCellRenderer extends DefaultListCellRenderer {
 	
 	public Component getListCellRendererComponent(JList list, Object value,
 			int index, boolean isSelected, boolean cellHasFocus) {
-		JLabel label = (JLabel)super.getListCellRendererComponent(list, 
+		JLabel jlabel = (JLabel)super.getListCellRendererComponent(list, 
 				value, index, isSelected, cellHasFocus);
 		User user = (User)value;
-		label.setText(user.getName());
+		jlabel.setText(user.getName());
 		if (isSelected) {
 			this.setBackground(Color.YELLOW);
 			list.setSelectedIndex(index);

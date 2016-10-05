@@ -14,6 +14,8 @@ public class User {
 		
 		//User's Socket
 		private Socket socket;
+		//there should have user score, it s should be add later when we finished the game program.
+		private int score;
 		
 		public User() {
 			

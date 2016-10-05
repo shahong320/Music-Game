@@ -14,8 +14,8 @@ public class ReceiveMessageAction implements ClientAction {
 		// TODO Auto-generated method stub
 		String content = (String)response.getData("content");
 		String senderName = (String)response.getData("senderName");
-		MainUI mainFrame = ClienContext.mainFrame;
-		mainFrame.chat.appendContent(senderName + " says to you: " + content);
+		MainUI mu = ClienContext.mainFrame;
+		mu.chat.appendContent(senderName + " says to you: " + content);
 	}
 
 }
