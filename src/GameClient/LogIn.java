@@ -175,16 +175,16 @@ public class LogIn extends JFrame{
 	//Read the MANIFEST.MF under the Game, read the Game-Class attributes, if it exist then slide.
 	private void readGame() {
 		try {
-			File folder = new File("game");
-			for (File file : folder.listFiles()) {
-				if (CheckJar(file.getName())) {
-					//得到jar文件
-					JarFile jar = new JarFile(file);
-					//得到元数据文件
+			File file = new File("game");
+			for (File file1 : file.listFiles()) {
+				if (CheckJar(file1.getName())) {
+					//get jar
+					JarFile jar = new JarFile(file1);
+					//get manifest
 					Manifest mf = jar.getManifest();
-					//获得各个属性
+					//get attributes
 					Attributes gameClassAttrs = mf.getMainAttributes();
-					//查找Game-Class属性
+					//find game class attributes
 					String gameClass = gameClassAttrs.getValue("Game-Class");
 					if (gameClass != null) {
 						Game game = (Game)Class.forName(gameClass).newInstance();

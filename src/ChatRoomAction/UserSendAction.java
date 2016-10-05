@@ -31,16 +31,16 @@ public class UserSendAction implements ServerAction{
 	private void sendToAll(String content, User sender, Response response) {
 		response.setData("senderName", sender.getName());
 		for (String key : ChatContext.users.keySet()) {
-			User user = ChatContext.users.get(key);
-			if (user.getId() != sender.getId()) {
-				user.getPrintStream().println(XStreamUtil.toXML(response));
+			User user1 = ChatContext.users.get(key);
+			if (user1.getId() != sender.getId()) {
+				user1.getPrintStream().println(XStreamUtil.toXML(response));
 			}
 		}
 	}
 	//send to one
 	private void sendToOne(String content, String receiverId, User sender, Response response) {
-		User receiver = ChatContext.users.get(receiverId);
+		User receive = ChatContext.users.get(receiverId);
 		response.setData("senderName", sender.getName());
-		receiver.getPrintStream().println(XStreamUtil.toXML(response));
+		receive.getPrintStream().println(XStreamUtil.toXML(response));
 	}
 }

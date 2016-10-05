@@ -13,7 +13,7 @@ public class ChatIndex implements Game{
 	public void start(User user) {
 		// TODO Auto-generated method stub
 		ClienContext.user = user;
-		//进入聊天室, 告诉服务器用户有用户进入
+		//tell server new user comein.
 		Request request = new Request("ChatRoomAction.UserInAction", 
 				"ChatRoomAction.StartAction");
 		request.setParameter("userInAction", 

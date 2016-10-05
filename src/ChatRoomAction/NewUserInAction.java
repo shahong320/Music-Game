@@ -1,7 +1,5 @@
 package ChatRoomAction;
 
-
-import ChatRoomClient.ChatRoom;
 import ChatRoomClient.ClienContext;
 import GameHallClient.ClientAction;
 import GameHallClient.Response;
@@ -14,8 +12,8 @@ public class NewUserInAction implements ClientAction{
 	public void execute(Response response) {
 		// TODO Auto-generated method stub
 		User newUser = (User)response.getData("newUser");
-		MainUI mainFrame = ClienContext.mainFrame;
-		//mainFrame.chatroom.addUser(newUser);
+		MainUI mu = ClienContext.mainFrame;
+		mu.chat.addUser(newUser);
 		
 	}
 

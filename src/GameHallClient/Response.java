@@ -4,32 +4,32 @@ import java.util.Map;
 
 public class Response {
 	//errorCode
-	private String errorCode;
-	//Servrt retuns datas.
-	private Map<String, Object> datas;
-	
+	private String error;
 	//update the data in request's map
 	private String actionClass;
+	//Servrt retuns datas.
+	private Map<String, Object> data;
+	
 	
 	public Response(String actionClass) {
-		this.datas = new HashMap<String, Object>();
+		this.data = new HashMap<String, Object>();
 		this.actionClass = actionClass;
 	}
 	
 	public void setData(String key, Object value) {
-		this.datas.put(key, value);
+		this.data.put(key, value);
 	}
 	
 	public Object getData(String key) {
-		return this.datas.get(key);
+		return this.data.get(key);
 	}
 
 	public String getErrorCode() {
-		return errorCode;
+		return error;
 	}
 
 	public void setErrorCode(String errorCode) {
-		this.errorCode = errorCode;
+		this.error = errorCode;
 	}
 
 	public String getActionClass() {
