@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-/*
+/**
  * This class is a main panel for switching different panels(HomeScreen, History, etc)
  * This class initializes all necessary panels, and has Actionlistener for all buttons of these
  * panels.
@@ -15,7 +15,7 @@ public class MainPanel extends JPanel implements ActionListener {
 	private Trophy trophyPanel;
 	private GameHistory history;
 
-	/*
+	/**
 	 * Initialization of panel and add button listener
 	 */
 	public MainPanel() {
@@ -52,7 +52,7 @@ public class MainPanel extends JPanel implements ActionListener {
 		frame.setVisible(true);
 	}
 
-	/*
+	/**
 	 * Button Actionlistener performance
 	 */
 	@Override

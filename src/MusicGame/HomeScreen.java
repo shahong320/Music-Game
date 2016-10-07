@@ -36,7 +36,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.Mixer.Info;
 
-/*
+/**
  * This class is the UI of homescreen. It has 5 buttons and 1 slider. The slider is used to change
  * the system volume with the method in this class.
  */
@@ -47,7 +47,7 @@ public class HomeScreen extends JPanel implements ChangeListener {
 	private JSlider volume;
 	private JLabel volumeLabel;
 
-	/*
+	/**
 	 *Initialize this class and its variables, and component distribution
 	 */
 	public HomeScreen() {
@@ -78,7 +78,7 @@ public class HomeScreen extends JPanel implements ChangeListener {
 		cons.insets = new Insets(0, 10, 10, 10);
 		cons.gridx = 0;
 		cons.gridy = 1;
-		menu.add(getStartGame(), cons);
+		menu.add(getSingleGame(), cons);
 		cons.gridx = 0;
 		cons.gridy = 2;
 		menu.add(getMultiPlay(), cons);
@@ -102,7 +102,9 @@ public class HomeScreen extends JPanel implements ChangeListener {
 
 	}
 
-	// Slider changer( Volume change)
+	/** 
+	 * Slider changer( Volume change)
+	 */
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		if (e.getSource() == volume) {
@@ -111,7 +113,6 @@ public class HomeScreen extends JPanel implements ChangeListener {
 
 	}
 	/**
-	 * 
 	 * @return trophy button value
 	 */
 	public JButton getTrophy() {
@@ -119,7 +120,6 @@ public class HomeScreen extends JPanel implements ChangeListener {
 	}
 	
 	/**
-	 * 
 	 * @return singleGame button value
 	 */
 	public JButton getSingleGame() {
@@ -127,7 +127,6 @@ public class HomeScreen extends JPanel implements ChangeListener {
 	}
 
 	/**
-	 * 
 	 * @return multiPlay button value
 	 */
 	public JButton getMultiPlay() {
@@ -135,7 +134,6 @@ public class HomeScreen extends JPanel implements ChangeListener {
 	}
 
 	/**
-	 * 
 	 * @return gameHistory button value
 	 */
 	public JButton getGameHistory() {
@@ -143,14 +141,13 @@ public class HomeScreen extends JPanel implements ChangeListener {
 	}
 
 	/**
-	 * 
 	 * @return exit button value
 	 */
 	public JButton getExit() {
 		return exit;
 	}
 
-	/*
+	/**
 	 * Method for changing system volume
 	 */
 	public static void setOutputVolume(float value)
@@ -158,7 +155,7 @@ public class HomeScreen extends JPanel implements ChangeListener {
 	    String command = "set volume " + value;
 	    try
 	    {
-	        //For mac OS
+	    //For mac OS
 		/*
 		ProcessBuilder pb = new ProcessBuilder("osascript","-e",command);
 	        pb.directory(new File("/usr/bin”));
