@@ -58,7 +58,7 @@ public class HomeScreen extends JPanel implements ChangeListener {
 		volumePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		GridBagConstraints cons = new GridBagConstraints();
 		singleGame = new JButton("Single-Play");
-		getStartGame().setPreferredSize(new Dimension(150, 30));
+		getSingleGame().setPreferredSize(new Dimension(150, 30));
 		multiPlay = new JButton("Multi-Play");
 		getMultiPlay().setPreferredSize(new Dimension(150, 30));
 		trophy = new JButton("Trophy");
