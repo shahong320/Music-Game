@@ -32,7 +32,7 @@ public class MainPanel extends JPanel implements ActionListener{
 		history.getBack().addActionListener(this);
 		
 	}
-	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		MainPanel main=new MainPanel();
