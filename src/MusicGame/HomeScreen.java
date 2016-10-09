@@ -36,14 +36,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.Mixer.Info;
 
-
-public class HomeScreen extends JPanel implements ChangeListener {
-	private JPanel menu, volumePanel;
-	private JButton startGame, multiPlay, trophy, gameHistory, exit;
-	private JSlider volume;
-	private JLabel volumeLabel;
-
-
 /**
  * This class is the UI of homescreen. It has 5 buttons and 1 slider. The slider is used to change
  * the system volume with the method in this class.
@@ -58,37 +50,6 @@ public class HomeScreen extends JPanel implements ChangeListener {
 	/**
 	 *Initialize this class and its variables, and component distribution
 	 */
-
-/**
- * This class is the UI of homescreen. It has 5 buttons and 1 slider. The slider is used to change
- * the system volume with the method in this class.
- */
-
-public class HomeScreen extends JPanel implements ChangeListener {
-	private JPanel menu, volumePanel;
-	private JButton singleGame, multiPlay, trophy, gameHistory, exit;
-	private JSlider volume;
-	private JLabel volumeLabel;
-
-	/**
-	 *Initialize this class and its variables, and component distribution
-	 */
-
-/**
- * This class is the UI of homescreen. It has 5 buttons and 1 slider. The slider is used to change
- * the system volume with the method in this class.
- */
-
-public class HomeScreen extends JPanel implements ChangeListener {
-	private JPanel menu, volumePanel;
-	private JButton singleGame, multiPlay, trophy, gameHistory, exit;
-	private JSlider volume;
-	private JLabel volumeLabel;
-
-	/**
-	 *Initialize this class and its variables, and component distribution
-	 */
-
 	public HomeScreen() {
 		super(new BorderLayout());
 
@@ -96,19 +57,8 @@ public class HomeScreen extends JPanel implements ChangeListener {
 		menu = new JPanel(new GridBagLayout());
 		volumePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		GridBagConstraints cons = new GridBagConstraints();
-
-		startGame = new JButton("Single-Play");
-		getStartGame().setPreferredSize(new Dimension(150, 30));
-
 		singleGame = new JButton("Single-Play");
 		getSingleGame().setPreferredSize(new Dimension(150, 30));
-
-		singleGame = new JButton("Single-Play");
-		getSingleGame().setPreferredSize(new Dimension(150, 30));
-
-		singleGame = new JButton("Single-Play");
-		getSingleGame().setPreferredSize(new Dimension(150, 30));
-
 		multiPlay = new JButton("Multi-Play");
 		getMultiPlay().setPreferredSize(new Dimension(150, 30));
 		trophy = new JButton("Trophy");
@@ -128,15 +78,7 @@ public class HomeScreen extends JPanel implements ChangeListener {
 		cons.insets = new Insets(0, 10, 10, 10);
 		cons.gridx = 0;
 		cons.gridy = 1;
-
-		menu.add(getStartGame(), cons);
-
 		menu.add(getSingleGame(), cons);
-
-		menu.add(getSingleGame(), cons);
-
-		menu.add(getSingleGame(), cons);
-
 		cons.gridx = 0;
 		cons.gridy = 2;
 		menu.add(getMultiPlay(), cons);
@@ -160,79 +102,15 @@ public class HomeScreen extends JPanel implements ChangeListener {
 
 	}
 
-
-	// Slider changer( Volume change)
-
 	/** 
 	 * Slider changer( Volume change)
 	 */
-
-	/** 
-	 * Slider changer( Volume change)
-	 */
-
-	/** 
-	 * Slider changer( Volume change)
-	 */
-
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		if (e.getSource() == volume) {
 			setOutputVolume(volume.getValue() / 10);
 		}
 
-
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public JButton getTrophy() {
-		return trophy;
-	}
-
-	public JButton getStartGame() {
-		return startGame;
-	}
-
-	public JButton getMultiPlay() {
-		return multiPlay;
-	}
-
-	public JButton getGameHistory() {
-		return gameHistory;
-	}
-
-	public JButton getExit() {
-		return exit;
-	}
-
-	public static void setOutputVolume(float value)
-		{
-		    String command = "set volume " + value;
-		    try
-		    {
-		        //For mac OS
-			/*
-			ProcessBuilder pb = new ProcessBuilder("osascript","-e",command);
-		        pb.directory(new File("/usr/bin”));
-			*/
-
-			//For windows OS
-			ProcessBuilder pb = new ProcessBuilder(“CMD”,”/C”,command);
-		        Process p = pb.start();
-		        p.waitFor();
-		        BufferedReader reader =
-		                new BufferedReader(new InputStreamReader(p.getInputStream()));
-		    }
-		    catch(Exception e)
-		    {
-		        System.out.println(e);
-		    }
-		}
-
 	}
 	/**
 	 * @return trophy button value
@@ -282,109 +160,6 @@ public class HomeScreen extends JPanel implements ChangeListener {
 		ProcessBuilder pb = new ProcessBuilder("osascript","-e",command);
 	        pb.directory(new File("/usr/bin”));
 		*/
-
-
-	}
-	/**
-	 * @return trophy button value
-	 */
-	public JButton getTrophy() {
-		return trophy;
-	}
-	
-	/**
-	 * @return singleGame button value
-	 */
-	public JButton getSingleGame() {
-		return singleGame;
-	}
-
-	/**
-	 * @return multiPlay button value
-	 */
-	public JButton getMultiPlay() {
-		return multiPlay;
-	}
-
-	/**
-	 * @return gameHistory button value
-	 */
-	public JButton getGameHistory() {
-		return gameHistory;
-	}
-
-	/**
-	 * @return exit button value
-	 */
-	public JButton getExit() {
-		return exit;
-	}
-
-	/**
-	 * Method for changing system volume
-	 */
-	public static void setOutputVolume(float value)
-	{
-	    String command = "set volume " + value;
-	    try
-	    {
-	    //For mac OS
-		/*
-		ProcessBuilder pb = new ProcessBuilder("osascript","-e",command);
-	        pb.directory(new File("/usr/bin”));
-		*/
-
-
-	}
-	/**
-	 * @return trophy button value
-	 */
-	public JButton getTrophy() {
-		return trophy;
-	}
-	
-	/**
-	 * @return singleGame button value
-	 */
-	public JButton getSingleGame() {
-		return singleGame;
-	}
-
-	/**
-	 * @return multiPlay button value
-	 */
-	public JButton getMultiPlay() {
-		return multiPlay;
-	}
-
-	/**
-	 * @return gameHistory button value
-	 */
-	public JButton getGameHistory() {
-		return gameHistory;
-	}
-
-	/**
-	 * @return exit button value
-	 */
-	public JButton getExit() {
-		return exit;
-	}
-
-	/**
-	 * Method for changing system volume
-	 */
-	public static void setOutputVolume(float value)
-	{
-	    String command = "set volume " + value;
-	    try
-	    {
-	    //For mac OS
-		/*
-		ProcessBuilder pb = new ProcessBuilder("osascript","-e",command);
-	        pb.directory(new File("/usr/bin”));
-		*/
-
 
 		//For windows OS
 		ProcessBuilder pb = new ProcessBuilder(“CMD”,”/C”,command);
@@ -398,5 +173,4 @@ public class HomeScreen extends JPanel implements ChangeListener {
 	        System.out.println(e);
 	    }
 	}
-
 }
