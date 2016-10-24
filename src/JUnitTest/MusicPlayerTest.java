@@ -2,7 +2,8 @@ package JUnitTest;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import MusicGame.*;
+
+import GamePackage.MusicPlayer;
 
 public class MusicPlayerTest {
 
