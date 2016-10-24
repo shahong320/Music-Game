@@ -11,7 +11,7 @@ import ChatRoomClient.ChatContext;
 import GameHallClient.XStreamUtil;
 import GameHallServer.ServerThread;
 
-public class ChatRoomUtest {
+public class ChatRoomUtest  {
     private  ChatContext CC;
     private ServerThread ST;
     private Socket socket;

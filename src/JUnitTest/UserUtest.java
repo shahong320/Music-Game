@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import GameHallClient.User;
 
-public class UserUtest {
+public class UserUtest  {
     private User user;
      @Before
      public void setUp() {
