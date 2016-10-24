@@ -10,6 +10,7 @@ public class MusicPlayer {
 	AudioPlayer MGP = AudioPlayer.player;
 	private boolean isStop = true;
 	private double startPosition;
+	private double currentPosiition;
 	private String songPath;
 	AudioStream BGM;
 	AudioData MD;
@@ -33,7 +34,6 @@ public class MusicPlayer {
 			return true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return false;
 		}
 	}
@@ -53,6 +53,7 @@ public class MusicPlayer {
 
 	public void stop() {
 		MGP.stop(BGM);
+		currentPosiition = currentPosition();
 		isStop = true;
 	}
 	
@@ -62,6 +63,7 @@ public class MusicPlayer {
 	
 	public void resume (){
 		MGP.start(BGM);
+		startPosition = (double) (System.currentTimeMillis()*1.00/1000.f) - currentPosiition;
 		isStop = false;
 	}
 }
