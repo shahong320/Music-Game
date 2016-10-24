@@ -49,8 +49,8 @@ public class ServerThread extends Thread{
 	private Request getRequest(String xml) {
 		
 		try {
-			Request r = (Request)XStreamUtil.fromXML(xml);
-			return r;
+			Request request = (Request)XStreamUtil.fromXML(xml);
+			return request;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
