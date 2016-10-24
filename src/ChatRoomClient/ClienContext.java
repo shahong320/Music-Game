@@ -1,11 +1,11 @@
 package ChatRoomClient;
 
 import GameHallClient.User;
-import UIFrame.MainUI;
+import UIFrame.MainFrame;
 //Store some Client Infro
 public class ClienContext {
 
 	public static User user;
 	
-	public static MainUI mainFrame;
+	public static MainFrame mainFrame;
 }

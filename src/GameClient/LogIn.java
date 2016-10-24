@@ -26,16 +26,16 @@ import GameHallClient.User;
 
 public class LogIn extends JFrame{
 	//Create the User Name.
-	private JLabel nameTextLabel = new JLabel("User Name£º");
+	private JLabel nameTextLabel = new JLabel("User Name:");
 	private JTextField nameField = new JTextField(20);
 	//Select the sex.
-	private JLabel sexTextLabel = new JLabel("Gender£º");
+	private JLabel sexTextLabel = new JLabel("Gender:");
 	private JComboBox sexSelect = new JComboBox();
 	//Select the Game.
-	private JLabel gameTextLabel = new JLabel("Select Game£º");
+	private JLabel gameTextLabel = new JLabel("Select Game:");
 	private JComboBox gameSelect = new JComboBox();
 	//Connect the IP address.
-	private JLabel connectionLabel = new JLabel("IP address£º");
+	private JLabel connectionLabel = new JLabel("IP address:");
 	private JTextField connectionField = new JTextField("127.0.0.1");
 	//Create buttons.
 	private JButton YesButton = new JButton("Yes");

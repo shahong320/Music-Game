@@ -8,7 +8,11 @@ import GameHallClient.Response;
 import GameHallClient.ServerAction;
 import GameHallClient.User;
 import GameHallClient.XStreamUtil;
-
+/**
+ * When user made the action of send 
+ * @author Hongzhou Sha
+ *
+ */
 public class UserSendAction implements ServerAction{
 
 	@Override
@@ -27,7 +31,13 @@ public class UserSendAction implements ServerAction{
 			sendToOne(content, receiverId, sender, response);
 		}
 	}
-	//send to all
+
+	/**
+	 * send to all
+	 * @param content
+	 * @param sender
+	 * @param response
+	 */
 	private void sendToAll(String content, User sender, Response response) {
 		response.setData("senderName", sender.getName());
 		for (String key : ChatContext.users.keySet()) {
@@ -37,7 +47,13 @@ public class UserSendAction implements ServerAction{
 			}
 		}
 	}
-	//send to one
+	/**
+	 * send to one
+	 * @param content
+	 * @param receiverId
+	 * @param sender
+	 * @param response
+	 */
 	private void sendToOne(String content, String receiverId, User sender, Response response) {
 		User receive = ChatContext.users.get(receiverId);
 		response.setData("senderName", sender.getName());
