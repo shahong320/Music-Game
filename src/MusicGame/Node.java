@@ -37,7 +37,7 @@ public class Node {
 	}
 	
 	public void move (){
-		y+= 0.5;
+		y+= 0.4;
 	}
 	
 	public boolean isStop (){

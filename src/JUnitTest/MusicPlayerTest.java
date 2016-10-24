@@ -9,7 +9,6 @@ public class MusicPlayerTest {
 	
 	@Test
 	public void testOpenAudioFile (){
-
 		MusicPlayer player = new MusicPlayer ("AudioFile/startdash.ogg");
 		boolean result = false;
 		assertEquals(result,player.openFile());
@@ -31,6 +30,7 @@ public class MusicPlayerTest {
 	public void testResumeMusic (){
 		MusicPlayer player = new MusicPlayer ("AudioFile/startdash.wav");
 		player.Start();
+		player.stop();		
 		player.resume();
 		boolean result = false;
 		assertEquals(result,player.isStop());
