@@ -8,7 +8,12 @@ import GameHallClient.Response;
 import GameHallClient.ServerAction;
 import GameHallClient.User;
 import GameHallClient.XStreamUtil;
-//When user goin the chat room.
+
+/**
+ * When a user goin the chatroom
+ * @author Hongzhou Sha
+ *
+ */
 public class UserInAction implements ServerAction{
 
 	@Override
