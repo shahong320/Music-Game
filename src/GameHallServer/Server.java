@@ -11,8 +11,8 @@ public class Server {
 		try {
 			this.serverSocket = new ServerSocket(12000);
 			while(true) {
-				Socket s = this.serverSocket.accept();
-				new ServerThread(s).start();
+				Socket socket = this.serverSocket.accept();
+				new ServerThread(socket).start();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

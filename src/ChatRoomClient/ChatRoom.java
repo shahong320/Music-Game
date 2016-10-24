@@ -21,14 +21,15 @@ import javax.swing.JTextField;
 
 import GameHallClient.User;
 import GameHallClient.XStreamUtil;
+import GamePackage.Container;
 import GameHallClient.Request;
 
 
 public class ChatRoom extends JPanel{
 	//display the content of chat
-	private JTextArea textArea = new JTextArea(20, 70);
+	private JTextArea chatScreen = new JTextArea(32, 34);
 	//Enter details 
-	private JTextField field = new JTextField(20);
+	private JTextField chatField = new JTextField(20);
 	//Send button
 	private JButton sendButton = new JButton("Send");
 	//current user
@@ -41,6 +42,7 @@ public class ChatRoom extends JPanel{
 	
 	private User allUser = new User();
 	
+
 	
 	public ChatRoom(User user,List<User> users){
 		this.user = user;
@@ -48,20 +50,22 @@ public class ChatRoom extends JPanel{
 		this.users.add(0,this.allUser);
 		this.allUser.setName("All User");
 		this.allUser.setId("all");
+		
+		
 		//remover yourself form list
 	    removeSelf();
 		this.infoLabel = new JLabel("Your Name: "+user.getName());
 		//Create user list
 		createUserList();
-		this.textArea.setEditable(false);	
-		JScrollPane content = new JScrollPane(this.textArea);
-		content.setMinimumSize(new Dimension(400,200));
+		this.chatScreen.setEditable(false);	
+		JScrollPane content = new JScrollPane(this.chatScreen);
+		content.setMinimumSize(new Dimension(200,200));
 		
 		Box infoBox = Box.createHorizontalBox();
 		infoBox.add(this.infoLabel);
 		
 		Box sendBox = Box.createHorizontalBox();
-		sendBox.add(this.field);
+		sendBox.add(this.chatField);
 		sendBox.add(this.sendButton);
 		
 		
@@ -108,17 +112,17 @@ public class ChatRoom extends JPanel{
 			}
 			Request request = new Request("ChatRoomAction.UserSendAction", 
 					"ChatRoomAction.ReceiveMessageAction");
-			request.setParameter("content", this.field.getText());
+			request.setParameter("content", this.chatField.getText());
 			request.setParameter("senderId", this.user.getId());
 			request.setParameter("receiverId", selectUser.getId());
-			appendContent("You say to "+selectUser.getName()+":"+this.field.getText());
+			appendContent("You say to "+selectUser.getName()+":"+this.chatField.getText());
 			this.user.getPrintStream().println(XStreamUtil.toXML(request));
 			
 		}
 		
 		public void appendContent(String content) {
-			if (this.textArea.getText().equals("")) this.textArea.append(content);
-			else this.textArea.append("\n" + content);
+			if (this.chatScreen.getText().equals("")) this.chatScreen.append(content);
+			else this.chatScreen.append("\n" + content);
 		}
 
 		//add new user

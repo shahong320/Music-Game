@@ -4,8 +4,7 @@ import java.net.Socket;
 
 public class User {
 		//User's unique ID
-		private String id;
-		
+		private String id;	
 		//User Name
 		private String name;
 		
@@ -17,6 +16,13 @@ public class User {
 		//there should have user score, it s should be add later when we finished the game program.
 		private int score;
 		
+		public int getScore(){
+			return this.score;
+		}
+		public void setScore(int score){
+			this.score= score;
+		}
+			
 		public User() {
 			
 		}

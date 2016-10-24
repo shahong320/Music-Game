@@ -1,6 +1,4 @@
 package ChatRoomAction;
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,13 +9,13 @@ import ChatRoomClient.ClienContext;
 import GameHallClient.ClientAction;
 import GameHallClient.Response;
 import GameHallClient.User;
-import UIFrame.MainUI;
+import UIFrame.MainFrame;
 
 public class StartAction implements ClientAction{
 	/**
 	 * Change the Map to the List
 	 * @param usersMap
-	 * @return
+	 * @return resultList
 	 */
 	private List<User> getUser(Map<String, User> usersMap) {
 		List<User> resultList = new ArrayList<User>();
@@ -27,13 +25,13 @@ public class StartAction implements ClientAction{
 		}
 		return resultList;
 	}
-
+	@Override
 	public void execute(Response response) {
 		Map<String, User> usersMap = (Map<String, User>)response.getData("users");
 		List<User> users = getUser(usersMap);
-		MainUI ChatFrame = null;
+		MainFrame ChatFrame = null;
 		try {
-			ChatFrame = new MainUI(ClienContext.user, users);
+			ChatFrame = new MainFrame(ClienContext.user, users);
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
