@@ -10,11 +10,6 @@ import GameHallClient.Response;
 import GameHallClient.User;
 import GameHallClient.XStreamUtil;
 
-
-
-
-
-
 public class ClientThread extends Thread{
 	private String string;
 	private User user;
